@@ -1,0 +1,15 @@
+[package]
+name = "osl"
+version = "0.1.0"
+edition = "2021"
+authors = ["Guoweikang <guoweikang.kernel@gmail.com>"]
+description = "OS interface abstract layer"
+license = "GPL-3.0-or-later OR Apache-2.0"
+homepage = ""
+repository = "https://github.com/guoweikang/osl.git"
+
+[features]
+#these feature define OS, should remove from this crate when osl remove
+
+
+
