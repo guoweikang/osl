@@ -1,10 +1,10 @@
 //! Defines the OS Layper general error type.
-//! 
+//!
 //! Every OS should provide Error type and an error code conversion method
 //! such as the following implementation on Linux.
 //!
 //! # Examples
-//! 
+//!
 //! ```
 //! use kernel::prelude::error{Error,code};
 //!
@@ -26,7 +26,7 @@ pub enum Errno {
     InvalidArgs,
 }
 
-#[cfg(feature="linux")]
+#[cfg(feature = "linux")]
 pub use crate::linux::error::*;
 
 /// A [`Result`] with an [`Error`] error type.
