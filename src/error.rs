@@ -23,7 +23,7 @@
 //! ```
 //! use osl::error::{Errno, Result, to_error}
 //!
-//! fn func(t: int32) -> Result<()> {
+//! fn func(t: i32) -> Result<()> {
 //!     if t > 0 {
 //!         Ok(())
 //!     } else {

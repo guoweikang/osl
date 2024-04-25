@@ -1,8 +1,8 @@
 //! This is an OS interface abstraction layer developed for cross-kernel drivers.
 //!
 //! Include:
-//! - error: error type use by drivers
-//!
+//! - error: error type used by drivers
+//! - log: log interface used by drivers
 
 #![no_std]
 
@@ -10,3 +10,4 @@
 mod linux;
 
 pub mod error;
+pub mod log;
