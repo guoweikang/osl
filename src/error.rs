@@ -37,6 +37,10 @@
 pub enum Errno {
     /// Invalid arguments.
     InvalidArgs,
+    /// No such device.
+    NoSuchDevice,
+    /// Timeout
+    TimeOut,
 }
 
 #[cfg(feature = "linux")]

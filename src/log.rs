@@ -5,16 +5,29 @@
 //! # Examples
 //!
 //! ```
-//! 
+//! pub fn log_print(level: LogLevel, args: fmt::Arguments<'_>) {
+//!     unsafe {
+//!         match  level {
+//!             LogLevel::Error =>  call_printk(&format_strings::ERR, __LOG_PREFIX, args),
+//!             LogLevel::Warn => call_printk(&format_strings::WARNING, __LOG_PREFIX, args),
+//!             LogLevel::Info => call_printk(&format_strings::INFO, __LOG_PREFIX, args),
+//!             LogLevel::Debug => call_printk(&format_strings::DEBUG, __LOG_PREFIX, args),
+//!         }
+//!     }
+//! }
 //!
 //! ```
+//!
+//!# Use Example
+//!
 //! ```
 //! #[macro_use]
 //! extern crate osl;
 //!
 //! fn func() {
-//!     info!("Hello!")
+//!     log_info!("Hello!")
 //! }
+//!
 
 #[cfg(feature = "linux")]
 pub use crate::linux::log::*;
@@ -39,10 +52,10 @@ pub enum LogLevel {
 /// # Examples
 ///
 /// ```
-/// log_error!("hello {}\n", "there");
+/// log_err!("hello {}\n", "there");
 /// ```
 #[macro_export]
-macro_rules! log_error (
+macro_rules! log_err (
     ($($arg:tt)*) => (
         $crate::log::log_print($crate::log::LogLevel::Error, format_args!($($arg)*))
     )

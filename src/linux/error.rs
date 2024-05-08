@@ -6,6 +6,8 @@ impl From<crate::error::Errno> for Error {
     fn from(errno: crate::error::Errno) -> Self {
         match errno {
             crate::error::Errno::InvalidArgs => EINVAL,
+            crate::error::Errno::NoSuchDevice => ENODEV,
+            crate::error::Errno::TimeOut => ETIMEDOUT,
         }
     }
 }
