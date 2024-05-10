@@ -9,4 +9,6 @@ homepage = ""
 repository = "https://github.com/guoweikang/osl.git"
 
 [features]
-#these feature define OS, should remove from this crate when osl remove
+linux=[]
+arceos=[]
+default=[]
