@@ -41,6 +41,8 @@ pub enum Errno {
     NoSuchDevice,
     /// Timeout
     TimeOut,
+    /// Device is busy
+    Busy,
 }
 
 #[cfg(feature = "linux")]
