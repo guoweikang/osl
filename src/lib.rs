@@ -14,3 +14,5 @@ pub mod log;
 pub mod sleep;
 pub mod time;
 pub mod vec;
+pub mod sync;
+pub mod irq;

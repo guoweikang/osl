@@ -9,6 +9,8 @@ impl From<crate::error::Errno> for Error {
             crate::error::Errno::NoSuchDevice => ENODEV,
             crate::error::Errno::TimeOut => ETIMEDOUT,
             crate::error::Errno::Busy => EBUSY,
+            crate::error::Errno::Io => EIO,
+            crate::error::Errno::Again => EAGAIN,
         }
     }
 }

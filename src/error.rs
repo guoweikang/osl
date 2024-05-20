@@ -43,6 +43,10 @@ pub enum Errno {
     TimeOut,
     /// Device is busy
     Busy,
+    /// IO error
+    Io,
+    /// Try Again
+    Again,
 }
 
 #[cfg(feature = "linux")]
