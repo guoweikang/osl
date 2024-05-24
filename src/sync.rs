@@ -1,27 +1,37 @@
 //! Defines the OS Layper sync API.
 //!
 //! Every OS must provide the following features
-//! 
-//! - Complete mechanism
+//!
+//! - Complete mechanism:
 //!  must supply a stuct called OslCompletion and implement GeneralComplete
+//!
+//! - SpinLock
+//!  must supply a stuct called SpinLock and implement lock
+//!
+//! - Arc
 //!
 
 use crate::error::Result;
 
-/// Complete trait that os must implement
-pub trait GeneralComplete:Default {
-    /// complete init
-    fn init(&mut self);
-    /// complete reinit
-    fn reinit(&mut self);
-    /// wait completion finish
-    /// timeout: seconds
-    fn wait_for_completion_timeout(&mut self, timeout: u32) -> Result<()>;
-    /// wait unitil complete
-    fn wait_for_completion(&mut self);
-    /// finish complete
-    fn complete(&mut self);
-}
-
 #[cfg(feature = "linux")]
 pub use crate::linux::complete::*;
+#[cfg(feature = "linux")]
+pub use kernel::sync::Arc;
+#[cfg(feature = "linux")]
+pub use kernel::{new_spinlock, sync::SpinLock};
+
+/// Complete trait that os must implement
+/// not use mutable,complete inner data use own lock protect
+pub trait GeneralComplete {
+    /// complete new
+    fn new() -> Result<Arc<Self>>;
+    /// complete reinit
+    fn reinit(&self);
+    /// wait completion finish
+    /// timeout: seconds
+    fn wait_for_completion_timeout(&self, timeout: u32) -> Result<()>;
+    /// wait unitil complete
+    fn wait_for_completion(&self);
+    /// finish complete
+    fn complete(&self);
+}

@@ -18,7 +18,7 @@
 //! }
 //! ```
 //!
-//! Driver use osl error 
+//! Driver use osl error
 //!
 //! ```
 //! use osl::error::{Errno, Result, to_error}

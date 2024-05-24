@@ -1,36 +1,17 @@
 //! Defines the OS Layper log API.
 //!
-//! Every OS should provide log_print func
-//!
-//! # Examples
-//!
-//! ```
-//! pub fn log_print(level: LogLevel, args: fmt::Arguments<'_>) {
-//!     unsafe {
-//!         match  level {
-//!             LogLevel::Error =>  call_printk(&format_strings::ERR, __LOG_PREFIX, args),
-//!             LogLevel::Warn => call_printk(&format_strings::WARNING, __LOG_PREFIX, args),
-//!             LogLevel::Info => call_printk(&format_strings::INFO, __LOG_PREFIX, args),
-//!             LogLevel::Debug => call_printk(&format_strings::DEBUG, __LOG_PREFIX, args),
-//!         }
-//!     }
-//! }
-//!
-//! ```
+//! Every OS should provide log_print! macro
 //!
 //!# Use Example
 //!
 //! ```
 //! #[macro_use]
 //! extern crate osl;
-//!
+//! const __LOG_PREFIX: &[u8] = b"sample\0";
 //! fn func() {
 //!     log_info!("Hello!")
 //! }
 //!
-
-#[cfg(feature = "linux")]
-pub use crate::linux::log::*;
 
 /// Log Level
 pub enum LogLevel {
@@ -44,6 +25,8 @@ pub enum LogLevel {
     Debug,
 }
 
+#[cfg(feature = "linux")]
+pub use crate::linux::log::*;
 
 /// Prints an error-level message.
 ///
@@ -57,7 +40,7 @@ pub enum LogLevel {
 #[macro_export]
 macro_rules! log_err (
     ($($arg:tt)*) => (
-        $crate::log::log_print($crate::log::LogLevel::Error, format_args!($($arg)*))
+        $crate::log_print!($crate::log::LogLevel::Error, $($arg)*)
     )
 );
 
@@ -73,7 +56,7 @@ macro_rules! log_err (
 #[macro_export]
 macro_rules! log_warn (
     ($($arg:tt)*) => (
-        $crate::log::log_print($crate::log::LogLevel::Warn, format_args!($($arg)*))
+        $crate::log_print!($crate::log::LogLevel::Warn, $($arg)*)
     )
 );
 
@@ -89,7 +72,7 @@ macro_rules! log_warn (
 #[macro_export]
 macro_rules! log_info (
     ($($arg:tt)*) => (
-        $crate::log::log_print($crate::log::LogLevel::Info, format_args!($($arg)*))
+        $crate::log_print!($crate::log::LogLevel::Info, $($arg)*)
     )
 );
 
@@ -105,6 +88,6 @@ macro_rules! log_info (
 #[macro_export]
 macro_rules! log_debug (
     ($($arg:tt)*) => (
-        $crate::log::log_print($crate::log::LogLevel::Debug, format_args!($($arg)*))
+        $crate::log_print!($crate::log::LogLevel::Debug, $($arg)*)
     )
 );
