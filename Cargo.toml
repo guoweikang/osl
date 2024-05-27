@@ -11,7 +11,6 @@ repository = "https://github.com/guoweikang/osl.git"
 [features]
 linux=[]
 arceos=[]
-default=[]
 
 [dependencies]
 bitflags = "2.5.0"
