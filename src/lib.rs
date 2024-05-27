@@ -13,10 +13,11 @@ mod linux;
 const __LOG_PREFIX: &[u8] = b"osl\0";
 
 pub mod error;
-pub mod irq;
 pub mod log;
 pub mod math;
 pub mod sleep;
 pub mod sync;
 pub mod time;
 pub mod vec;
+
+pub mod driver;
