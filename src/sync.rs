@@ -21,9 +21,9 @@ pub use kernel::sync::Arc;
 pub use kernel::{new_spinlock, sync::SpinLock};
 
 /// Complete trait that os must implement
-/// not use mutable,complete inner data use own lock protect
 pub trait GeneralComplete {
-    /// complete new
+    /// Complete use own lock protect
+    /// So here use Arc pointer as result
     fn new() -> Result<Arc<Self>>;
     /// complete reinit
     fn reinit(&self);

@@ -12,3 +12,7 @@ repository = "https://github.com/guoweikang/osl.git"
 linux=[]
 arceos=[]
 default=[]
+
+[dependencies]
+bitflags = "2.5.0"
+derive_builder = {version ="0.20", default-features = false}
