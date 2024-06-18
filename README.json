@@ -1,0 +1,11 @@
+{
+  "name": "osl",
+  "description": "This is an OS interface abstraction layer developed for cross-kernel drivers",
+  "authors": [{
+    "name": "guoweikang",
+    "email": "guoweikang@kernel.gmail"
+  }],
+  "keywords": ["driver", "os api"],
+  "repo": "guoweikang/osl",
+  "doc_url": "https://github.com/guoweikang/osl/blob/master/README.md"
+}
