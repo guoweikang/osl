@@ -7,7 +7,7 @@ pub fn time_add_us(us: u64) -> u64 {
     ktime_get() + us * NSEC_PER_USEC
 }
 
-/// Linux ktime add us
+/// Linux get current ktime  
 pub fn current_time() -> u64 {
     ktime_get()
 }

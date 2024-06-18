@@ -1,8 +1,14 @@
 //! Defines the OS Layper general irq Api
 //!
 
-#[cfg(feature = "linux")]
-pub use crate::linux::driver::irq::Return;
+cfg_if::cfg_if! {
+    if #[cfg(feature = "linux")] {
+        pub use crate::linux::driver::irq::Return;
+    } else if  #[cfg(feature = "arceos")] {
+        pub use crate::arceos::driver::irq::Return;
+    }
+}
+
 
 /// The general irq return type.
 /// The return value from interrupt handlers.

@@ -25,8 +25,14 @@ pub enum LogLevel {
     Debug,
 }
 
-#[cfg(feature = "linux")]
-pub use crate::linux::log::*;
+cfg_if::cfg_if! {
+    if #[cfg(feature = "linux")] {
+        pub use crate::linux::log::*;
+    } else if  #[cfg(feature = "arceos")] {
+        pub use crate::arceos::log::*;
+    }
+}
+
 
 /// Prints an error-level message.
 ///

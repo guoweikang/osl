@@ -13,3 +13,6 @@
 
 #[cfg(feature = "linux")]
 pub use crate::linux::sleep::*;
+
+#[cfg(feature = "arceos")]
+pub use crate::arceos::sleep::*;

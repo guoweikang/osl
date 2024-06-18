@@ -13,12 +13,18 @@
 
 use crate::error::Result;
 
-#[cfg(feature = "linux")]
-pub use crate::linux::complete::*;
-#[cfg(feature = "linux")]
-pub use kernel::sync::Arc;
-#[cfg(feature = "linux")]
-pub use kernel::{new_spinlock, sync::SpinLock};
+cfg_if::cfg_if! {
+    if #[cfg(feature = "linux")] {
+        pub use crate::linux::complete::*;
+        pub use kernel::sync::Arc;
+        pub use kernel::{new_spinlock, sync::SpinLock}
+    } else if  #[cfg(feature = "arceos")] {
+        pub use alloc::sync::Arc;
+        pub use crate::new_spinlock;
+        pub use crate::arceos::sync::SpinLock;
+        pub use crate::arceos::complete::*;
+    }
+}
 
 /// Complete trait that os must implement
 pub trait GeneralComplete {

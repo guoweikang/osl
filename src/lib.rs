@@ -11,6 +11,9 @@ mod linux;
 #[cfg(feature = "arceos")]
 mod arceos;
 
+#[cfg(feature = "arceos")]
+extern crate alloc;
+
 #[macro_use]
 extern crate derive_builder;
 

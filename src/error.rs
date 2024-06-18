@@ -51,6 +51,8 @@ pub enum Errno {
 
 #[cfg(feature = "linux")]
 pub use crate::linux::error::*;
+#[cfg(feature = "arceos")]
+pub use crate::arceos::error::Error;
 
 /// A [`Result`] with an [`Error`] error type.
 pub type Result<T> = core::result::Result<T, Error>;

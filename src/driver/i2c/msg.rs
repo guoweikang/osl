@@ -76,7 +76,10 @@ pub trait GeneralI2cMsg:Default+Sync+Send {
     fn remove_flag(&mut self, flag: I2cMsgFlags);
 }
 
-#[cfg(feature = "linux")]
-pub use crate::linux::driver::i2c::*;
-#[cfg(feature = "arceos")]
-pub use crate::arceos::driver::i2c::*;
+cfg_if::cfg_if! {
+    if #[cfg(feature = "linux")] {
+        pub use crate::linux::driver::i2c::*;
+    } else if  #[cfg(feature = "arceos")] {
+        pub use crate::arceos::driver::i2c::I2cMsg;
+    }
+}
